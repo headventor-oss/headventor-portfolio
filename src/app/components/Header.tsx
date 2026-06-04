@@ -67,7 +67,7 @@ export function Header() {
             src="/images/headventor-logo.png"
             alt="Headventor"
             style={{
-              height: '48px',
+              height: 'clamp(28px, 4vw, 48px)',
               width: 'auto',
               mixBlendMode: 'multiply',
               transition: 'opacity 0.2s ease',
