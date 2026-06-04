@@ -31,8 +31,8 @@ export function HeroSection() {
               color: '#1C1A17',
             }}
           >
-            Production AI that{' '}
-            <em style={{ fontStyle: 'italic', color: '#B84A28' }}>ships</em>
+            Invent What's{' '}
+            <em style={{ fontStyle: 'italic', color: '#B84A28' }}>Next</em>
           </AnimatedHeadline>
 
           <FadeUp delay={0.45}>
