@@ -1,0 +1,82 @@
+/* ─── Global ambient effects ─────────────────────────────────────────────── */
+
+/* Film grain overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+  opacity: 0.07;
+  pointer-events: none;
+  z-index: 9998;
+  mix-blend-mode: multiply;
+}
+
+/* Paper-edge vignette */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 60%, rgba(28, 26, 23, 0.07) 100%);
+  pointer-events: none;
+  z-index: 9997;
+}
+
+/* Custom cursor — desktop only */
+@media (hover: hover) and (pointer: fine) {
+  * { cursor: none !important; }
+}
+
+/* ─── Topbar nav underline (dual-gradient Squarespace technique) ──────────── */
+@keyframes navLinkIn {
+  from { background-position: -200% 100%, -100% 100%; }
+  to   { background-position: 0% 100%, 100% 100%; }
+}
+@keyframes navLinkOut {
+  from { background-position: 0% 100%, 100% 100%; }
+  to   { background-position: 210% 100%, 300% 100%; }
+}
+
+.nav-link-animated {
+  background-image:
+    linear-gradient(currentColor 0 0),
+    linear-gradient(currentColor 0 0);
+  background-size: 51% 1px;
+  background-repeat: no-repeat;
+  background-position: 210% 100%, 300% 100%;
+  text-decoration: none;
+}
+
+/* ─── CTA button — mix-blend-mode scaleX fill (Squarespace technique) ──────── */
+.btn-blend {
+  position: relative;
+  overflow: hidden;
+}
+.btn-blend::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--cream, #F4EFE5);
+  mix-blend-mode: difference;
+  transform: scaleX(0);
+  transform-origin: 0;
+  transition: transform 0.35s cubic-bezier(0.645, 0.045, 0.355, 1);
+  border-radius: inherit;
+}
+.btn-blend:hover::after { transform: scaleX(1); }
+
+/* ─── Text selection ─────────────────────────────────────────────────────── */
+::selection {
+  background: #B84A28;
+  color: #F4EFE5;
+}
+
+/* ─── prefers-reduced-motion ─────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+  }
+}
